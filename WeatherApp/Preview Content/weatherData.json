@@ -1,0 +1,46 @@
+{
+   "coord":{
+      "lon":-4.4453,
+      "lat":37.4716
+   },
+   "weather":[
+      {
+         "id":804,
+         "main":"Clouds",
+         "description":"overcast clouds",
+         "icon":"04n"
+      }
+   ],
+   "base":"stations",
+   "main":{
+      "temp":13.73,
+      "feels_like":12.96,
+      "temp_min":13.73,
+      "temp_max":13.73,
+      "pressure":1012,
+      "humidity":69,
+      "sea_level":1012,
+      "grnd_level":960
+   },
+   
+   "visibility":10000,
+   
+   "wind":{
+      "speed":3.69,
+      "deg":122,
+      "gust":5.73
+   },
+   "clouds":{
+      "all":100
+   },
+   "dt":1684614362,
+   "sys":{
+      "country":"ES",
+      "sunrise":1684559116,
+      "sunset":1684610615
+   },
+   "timezone":7200,
+   "id":2520645,
+   "name":"Cabra",
+   "cod":200
+}
