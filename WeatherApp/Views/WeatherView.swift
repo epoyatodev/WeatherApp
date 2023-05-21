@@ -15,6 +15,8 @@ struct WeatherView: View {
     @State private var isScaled = false
     @State var isRotated = true
     @State private var offsetX: CGFloat = 0
+    @State private var currentDate = Date()
+
     
     
     
@@ -31,7 +33,7 @@ struct WeatherView: View {
                         Text(weather.name)
                             .bold()
                             .font(.title)
-                        Text("Today, \(Date().formatted(.dateTime.month().day().hour().minute()))")
+                        Text("Today, \(currentDate.formatted(.dateTime.month().day().hour().minute()))")
                             .fontWeight(.light)
                     }
                     .frame(maxWidth: .infinity, alignment: .leading)
@@ -124,8 +126,18 @@ struct WeatherView: View {
         )
         .preferredColorScheme(.dark)
         .onAppear(perform: getDayOrNight)
+        .onAppear(perform: startTimer)
         
     }
+
+    
+    func startTimer() {
+            // Crear un temporizador que se dispara cada segundo
+            Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
+                // Actualizar la fecha actual cada vez que se dispara el temporizador
+                currentDate = Date()
+            }
+        }
     
     func getDayOrNight()  {
         if let weather = weather{
@@ -137,13 +149,12 @@ struct WeatherView: View {
             
             print(formattedDate)
             
-            let currentDate = Date()
             
             guard let formattedDate = dateFormatter.date(from: formattedDate) else {
                 return
             }
             
-            if formattedDate.compare(currentDate) == .orderedAscending {
+            if formattedDate > currentDate {
                 print("Night")
                 self.dia = false
             } else {
