@@ -74,9 +74,6 @@ struct WeatherView: View {
                                     offsetX = UIScreen.main.bounds.width - 50
                                 }
                             }
-                            .onTapGesture {
-                                dia.toggle()
-                            }
                         
                         
                         Spacer()

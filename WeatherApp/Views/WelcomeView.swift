@@ -16,7 +16,7 @@ struct WelcomeView: View {
                 Text("Welcome to Weather App")
                     .font(.title)
                     .bold()
-                Text("Please share your location to get the current weather.")
+                Text("Please share your location to get the current weather in your area.")
                     .padding()
             }
             .multilineTextAlignment(.center)
