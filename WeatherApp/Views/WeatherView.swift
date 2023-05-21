@@ -20,12 +20,7 @@ struct WeatherView: View {
     
     var body: some View {
         
-        let tapGesture = TapGesture()
-            .onEnded { _ in
-                withAnimation {
-                    isScaled.toggle()
-                }
-            }
+
         
         ZStack{
             if let weather = weather{
@@ -36,7 +31,7 @@ struct WeatherView: View {
                         Text(weather.name)
                             .bold()
                             .font(.title)
-                        Text("Hoy, \(Date().formatted(.dateTime.month().day().hour().minute()))")
+                        Text("Today, \(Date().formatted(.dateTime.month().day().hour().minute()))")
                             .fontWeight(.light)
                     }
                     .frame(maxWidth: .infinity, alignment: .leading)
@@ -87,7 +82,7 @@ struct WeatherView: View {
                     Spacer()
                     
                     VStack(alignment: .leading, spacing: 20){
-                        Text("Tiempo Hoy")
+                        Text("Weather Today")
                             .bold()
                             .padding(.bottom)
                         
