@@ -125,7 +125,10 @@ struct WeatherView: View {
             
         )
         .preferredColorScheme(.dark)
-        .onAppear(perform: getDayOrNight)
+        .onAppear{
+            geeTimeForDayOrNight()
+        }
+
         .onAppear(perform: startTimer)
         
     }
@@ -139,29 +142,38 @@ struct WeatherView: View {
             }
         }
     
+    func geeTimeForDayOrNight() {
+            Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
+                // Actualizar la fecha actual cada vez que se dispara el temporizador
+                getDayOrNight()
+            }
+        
+
+       
+    }
+    
     func getDayOrNight()  {
-        if let weather = weather{
+        if let weather = weather {
             let timestamp = weather.sys.sunset
             let date = Date(timeIntervalSince1970: TimeInterval(timestamp))
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "HH:mm:ss"
-            let formattedDate = dateFormatter.string(from: date)
             
-            print(formattedDate)
+            let calendar = Calendar.current
             
-            
-            guard let formattedDate = dateFormatter.date(from: formattedDate) else {
-                return
+            if let sunsetHour = calendar.dateComponents([.hour], from: date).hour,
+               let currentHour = calendar.dateComponents([.hour], from: currentDate).hour {
+                
+                if currentHour > sunsetHour {
+                    // La hora actual es posterior a la hora del atardecer
+                    self.dia = false
+                } else {
+
+                    // La hora actual es anterior o igual a la hora del atardecer
+                    self.dia = true
+                }
             }
-            
-            if formattedDate > currentDate {
-                print("Night")
-                self.dia = false
-            } else {
-                self.dia = true
-            }
-            
         }
+
+
     }
     
 }

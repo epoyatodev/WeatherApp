@@ -18,7 +18,6 @@ struct ContentView: View {
     
     var body: some View {
         VStack {
-            if UserDefaults.standard.object(forKey: "Longitude") != nil{
                 if let location = locationManager.getCoordinatesFromUserDefaults() {
                     if let weather = weather{
                         WeatherView(weather: weather, dia: false)
@@ -32,7 +31,7 @@ struct ContentView: View {
                                 }
                             }
                     }
-                }
+                
                 
             }else{
                 if locationManager.isLoading{
